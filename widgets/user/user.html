@@ -1,0 +1,81 @@
+<div class="item item--profile item--profile--<%= style %>">
+    <div class="shape">
+      
+      <div class="item-content front" style="background-image:url(<%= user.avatar_url %>&s=600);">
+        <div class="content">
+          <div class="profile-gradient">
+            <h1 class="profile-name"><%= user.name %></h1>
+          </div>
+        </div>
+      </div>
+      
+      <div class="item-content back">
+        <div class="content">
+          
+          <header class="md md-10 profile-header">
+            <span class="profile-picture img">
+              <% if (user.gravatar_id) { %>
+                <img src="http://www.gravatar.com/avatar/<%= user.gravatar_id %>?s=80" />
+              <% } else { %>
+                  <img src="<%= user.avatar_url %>s=80" />
+                  @<%= user.login %>
+                <% } %>
+              </span>    
+              <div class="bd">
+                <h1 class="profile-name"><%= user.name %></h1>
+                <h3 class="profile-meta">
+                  <% if (user.location) { %>
+                    <%= user.location %>
+                  <% } else { %>
+                    <%= user.login %>
+                  <% } %>
+                </h3>
+              </div>
+            </span>
+          </header>
+          
+          <% if (user.company) { %>
+            <h4 class="profile-company">
+              Works at <strong><%= user.company %></strong>
+            </h4>
+          <% } %>
+          
+          <% if (user.blog) { %>
+            <h4 class="profile-meta">
+              <a href="<%= user.blog %>"><strong><%= user.blog %></strong></a>
+            </h4>
+          <% } %>     
+          
+          
+          <ul class="list-stat list-stat--complete">
+            <% if (user.followers) { %>
+              <li>
+                <strong class="stat-number"><%= user.followers %></strong>
+                <span class="stat-label">followers</span>
+              </li>
+            <% } %>
+            <% if (user.following) { %>
+              <li>
+                <strong class="stat-number"><%= user.following %></strong>
+                <span class="stat-label">following</span>
+              </li>
+            <% } %>
+            <% if (user.public_repos) { %>
+              <li>
+                <strong class="stat-number"><%= user.public_repos %></strong>
+                <span class="stat-label">repositories</span>
+              </li>
+            <% } %>
+          </ul>
+          
+          <a href="<%= user.html_url %>" class="btn small block">
+            View on github
+          </a>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+
+</div>

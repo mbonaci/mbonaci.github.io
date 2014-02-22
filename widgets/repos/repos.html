@@ -1,0 +1,31 @@
+<% _.each(repos, function(repo) { %>
+  <li class="item">
+    <div class="shape">
+      <div class="item-content" data-href="<%= repo.html_url %>">
+        <div class="content">
+          <h3 class="title"><%= _.escape(repo.name) %></h3>
+          <% if (repo.homepage) { %>
+            <a href="<%= repo.homepage %>" class="url"><%= repo.homepage %></a>
+          <% } %>
+          <p class="description"><%= _.escape(repo.description) %></p>
+          <small class="date">Last updated <%= relativeTime(repo.pushed_at) %></small>
+        </div>
+      <footer class="metas">
+        <% if (repo.language) { %>
+          <span class="meta meta--language">
+            <%= repo.language %>
+          </span>
+        <% } %>
+        <span class="meta meta--star">
+          <i class="icon icon-star"></i>
+          <%= repo.watchers_count %>
+        </span> 
+        <span class="meta meta--fork">
+          <i class="icon icon-fork"></i>
+          <%= repo.forks_count %>
+        </span>
+      </footer>
+      </div>
+    </div>
+  </li>
+<% }); %>

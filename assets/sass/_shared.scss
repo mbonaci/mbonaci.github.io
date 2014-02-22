@@ -1,0 +1,181 @@
+/*
+ * Media Object
+ * ============
+ *
+ * The media object describes a content block containing
+ * a fixed-size media element (e.g. image or video)
+ * along with other variable-size content (e.g. text).
+ *
+ *      <div class="md">
+ *          <a href="#" class="img">
+ *              <img src="path/to/my/picture.jpg" alt="me" />
+ *          </a>
+ *          <div class="bd">
+ *              This is a media object.
+ *          </div>
+ *      </div>
+ */
+.md{
+    @include media-object(20px, left, 'overflow', '.img', '.bd');
+    &.md-10 .img{margin-right:10px;}
+    display:block;
+}
+.md-rev{
+    @include media-object(20px, right, 'overflow', '.img', '.bd');
+    &.md-10 .img{margin-left:10px;}
+    display:block;
+}
+
+
+
+.stat-number{
+  @include adjust-font-size-to(16px);
+}
+.stat-label{
+  @include adjust-font-size-to(12px);
+  @extend %gray;
+  @extend %ellipsis;
+  display:block;
+}
+
+
+
+.list-stat{
+  @include position;
+  display:table;
+  width:100%;
+  table-layout: fixed;
+  text-align:center;
+  .stat-number{
+    @include adjust-font-size-to(20px,1);
+    display:block;
+  }
+  .stat-label{
+    @include adjust-font-size-to(12px,1);
+    opacity:.75;
+  }
+}
+  .list-stat li{
+    @include position;
+    display:table-cell;
+    &+li:before{
+        content:"";
+        @include position(absolute, 0px 0 0px 0px);
+        width:1px;
+        background:rgba(black,.05);
+    }
+  }
+  
+ 
+ .btn{
+     font-family: inherit;
+     font-size: 100%;
+     margin: 0;
+     line-height: normal;
+     text-transform: none;
+     -webkit-appearance: none;
+
+     @include position;
+     @include trailer(0);
+     @include adjust-font-size-to(13px);
+     @include rhythm-borders(0px, .75);
+     @include background-clip;
+     @extend .bold;
+     @extend .align-center;
+     //@extend .upper;
+     display:inline-block;
+     border-radius: 4px;
+     cursor: pointer;
+     width: auto;
+     text-decoration: none;
+     text-shadow:none!important;
+     @include button($brand-light);
+     &:hover{
+         text-decoration: none;
+     }
+     &:active{
+
+     }
+     &.small{
+         @include adjust-font-size-to(12px);
+         @include rhythm-borders(0px, .5);
+         padding-left:1em;
+         padding-right:1em;
+     }
+     &.large{
+         @include adjust-font-size-to(16px);
+         @include rhythm-borders(0px, .75);
+         padding-left:1.5em;
+         padding-right:1.5em;
+     }
+     &.big{
+         @include adjust-font-size-to(20px);
+         @include rhythm-borders(0px, .5);
+         padding-left:2.5em;
+         padding-right:2.5em;
+     }
+     &.block{
+         display:block;
+     }
+ }
+
+ [class*="btn"] + [class*="btn"] {margin-left:.5em;}
+
+/*------------------------------------*\
+    Helpers
+\*------------------------------------*/
+.float-right{ float:right;}
+.float-left{ float:left;}
+.upper{text-transform:uppercase;}
+.small,small{@include adjust-font-size-to(11px)}
+.align-right{text-align:right;}
+.align-left{text-align:left;}
+.align-center{text-align:center;}
+.bold{font-weight:bold;}
+.italic{font-style:italic;}
+%ellipsis{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/*------------------------------------*\
+    Text Colors
+\*------------------------------------*/
+%gray{color:$gray-color;}
+%gray-light{color:$gray-light-color;}
+%gray-dark{color:$gray-dark-color;}
+%white{color:$white-color;}
+
+
+/*------------------------------------*\
+    Sprites
+\*------------------------------------*/
+.icon{  
+    @include hide-text;
+    width:16px;
+    height:16px;
+    display:block;
+    float:left;
+    background-color:transparent;
+    background-position:0 0;
+    background-repeat:no-repeat;
+    font-size:1px;
+    line-height:1px;
+    vertical-align:middle;
+}
+
+i.icon,
+img.icon {
+  display:inline-block;
+  float:none;
+  text-indent:0;
+  max-width:none;
+}
+
+$icon-layout:smart;
+$icon-sprite-dimensions: true;
+@import "icon/*.png";
+@include all-icon-sprites;
+
+//.icon-facebook{@include icon-sprite(facebook-hover);}

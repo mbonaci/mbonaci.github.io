@@ -1,0 +1,19 @@
+@include establish-baseline;
+
+* {
+  @include box-sizing(border-box);
+}
+
+body{
+  font:#{$base-font-size}/#{$base-line-height} 'Open sans',sans-serif;
+  color:$font-color;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing:antialiased;
+  background-color:$gray-extra-light-color;
+}
+  
+a{text-decoration:none;}
+a:hover{color:$brand-light;}
+
+strong{font-weight:bold;}
+em{font-style:italic;}
